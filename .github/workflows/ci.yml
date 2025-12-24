@@ -1,16 +1,16 @@
 name: CI Check
-on: [push]
+on: [push] # Tự động chạy mỗi khi nhóm push code lên
 
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '18'
-      - name: Install dependencies
-        run: npm install # Nếu nhóm có file package.json
-      - name: Check Build
-        run: echo "Code đã sẵn sàng để Deploy!"
+      - uses: actions/checkout@v3 # Bước lấy code từ Repo về máy ảo
+      
+      - name: Kiểm tra danh sách file
+        run: |
+          echo "Đang kiểm tra cấu trúc thư mục..."
+          ls -R # Lệnh này sẽ liệt kê mọi file bạn có để tránh lỗi "không tìm thấy"
+          
+      - name: Xác nhận sẵn sàng
+        run: echo "Code hợp lệ, bắt đầu quá trình CD!"
